@@ -1,0 +1,55 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+/* ==========================================================================
+   HOME PAGE (Hero Section)
+   ========================================================================== */
+
+.page-home {
+    .main-index {
+        // 1. PROPIEDADES BASE
+        display: grid;
+        grid-template-columns: 2fr 4fr 2fr; 
+        min-height: 80vh; 
+        align-items: center;
+        overflow: hidden;
+
+        // Estilos de fondo
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                    url('/assets/img/fondo-index.webp'); 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        // 2. MEDIA QUERIES (Usando variables v.)
+        @include m.respond-to('tablet') {
+            grid-template-columns: 1fr;
+            padding: 0 v.space('md'); // Cambiado m. por v.
+        }
+
+        .hero-content {
+            grid-column: 2;
+
+            @include m.respond-to('tablet') {
+                grid-column: 1;
+            }
+
+            h1 {
+                text-align: center;
+                color: v.clr("bg-main-top"); // Cambiado m. por v.
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+                font-family: v.$font-primary;
+
+                // Mixin al final
+                @include m.responsive-font("h1"); 
+            }
+
+            .main-index-button {
+                display: flex;
+                justify-content: center;
+                margin-top: v.space('md'); // Cambiado m. por v.
+            }
+        }
+    }
+}

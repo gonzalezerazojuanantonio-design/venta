@@ -1,0 +1,61 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   PRODUCT CARDS
+   ========================================================================== */
+
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: clr("white");
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%; 
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    .card-info {
+        padding: space("md");
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-family: $font-primary;
+            color: clr("dark-navy");
+            margin-bottom: space("xs");
+        }
+
+        .price {
+            display: block;
+            color: clr("primary");
+            font-weight: bold;
+            margin-bottom: space("sm");
+        }
+
+        .btn-details {
+            // 1. PROPIEDADES PRIMERO (Esto quita los Warnings 47, 48 y 49)
+            margin-top: auto; 
+            font-size: 0.8rem;
+            padding: space("xs") space("md");
+            cursor: pointer;
+
+            // 2. MIXIN AL FINAL
+            @include button-style(clr("primary"), clr("white"));
+        }
+    }
+}

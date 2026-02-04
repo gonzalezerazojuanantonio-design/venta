@@ -1,0 +1,156 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+/* ==========================================================================
+   HEADER STYLES
+   ========================================================================== */
+
+// 1. Barra superior de iconos
+.header-icons-container {
+    width: 100%;
+    background-color: v.clr("primary"); 
+    padding: v.space("xs") v.space("xl");
+    display: flex;
+    justify-content: flex-end;
+    
+    .icons a {
+        color: v.clr("white");
+        @include m.responsive-font("icons"); 
+        @include m.icon-hover(v.clr("white"), true);
+        
+        span {
+            display: inline-block;
+        }
+    }
+}
+
+// 2. Contenedor de navegación base
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: v.clr("bg-soft");
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(v.clr("pink-light"), 0.3);
+}
+
+// 3. Estructura principal
+.header-main {
+    width: 100%;
+
+    .nav-container-stacked {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        position: relative; // Necesario para posicionar el menú desplegable
+
+        // Elementos del truco de hamburguesa (ocultos por defecto)
+        .menu-check, .menu-toggle {
+            display: none;
+        }
+
+        .brand-logo {
+            display: flex;
+            justify-content: center;
+            padding: v.space("md") 0;
+
+            img {
+                width: clamp(120px, 15vw + 50px, 220px); 
+                height: auto;
+            }
+        }
+
+        .navbar-primary {
+            display: flex;
+            justify-content: center;
+            width: 100%; 
+            background-color: v.clr("pink-bold");
+            
+            ul {
+                display: flex;
+                list-style: none;
+                gap: clamp(v.space("xl"), 3vw, v.space("xl"));
+                padding: v.space("sm") v.space("md");
+                flex-wrap: wrap; 
+                justify-content: center;
+
+                li a {
+                    position: relative;
+                    display: inline-block;
+                    color: v.clr("white");
+                    font-weight: 500;
+                    white-space: nowrap; 
+                    font-family: v.$font-primary;
+                    font-size: clamp(0.875rem, 1.5vw + 0.5rem, 2.125rem);
+                    transition: transform 0.3s ease, color 0.3s ease; 
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 2px;
+                        bottom: -2px;
+                        left: 0;
+                        background-color: v.clr("white");
+                        transition: width 0.3s ease;
+                    }
+
+                    &:hover {
+                        transform: translateY(-3px);
+                        &::after {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS PARA CATÁLOGO (Solo Calzado y Prendas)
+   ========================================================================== */
+
+.header-catalog {
+    .nav-container-stacked {
+        @include m.respond-to("movil") {
+            flex-direction: row; // Logo a un lado, hamburguesa al otro
+            justify-content: space-between;
+            padding: 0 v.space("md");
+
+            .brand-logo {
+                padding: v.space("xs") 0;
+                img { width: 80px; } // Logo más pequeño en catálogo móvil
+            }
+
+            // Mostramos el icono de hamburguesa
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                color: v.clr("dark-navy");
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            // Ocultamos el menú original y lo preparamos para el despliegue
+            .navbar-primary {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+
+                ul {
+                    flex-direction: column;
+                    gap: v.space("md");
+                    padding: v.space("lg") 0;
+                }
+            }
+
+            // El "Truco" del Checkbox: Cuando se marca, muestra el menú
+            .menu-check:checked ~ .navbar-primary {
+                display: flex;
+            }
+        }
+    }
+}

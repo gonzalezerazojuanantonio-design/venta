@@ -1,0 +1,25 @@
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+
+// 1. HERRAMIENTAS
+@use "abstracts/variables" as *;
+@use "abstracts/mixins" as *;
+
+// 2. BASE
+@use "base/reset";
+@use "base/fonts";
+
+// 3. COMPONENTES
+@use "components/buttons";
+@use "components/cards";
+@use "components/products";
+
+// 4. LAYOUT
+@use "layout/header";
+@use "layout/footer";
+@use "layout/secciones-grids";
+
+// 5. PAGES
+@use "pages/home";
+@use "pages/recomendados";

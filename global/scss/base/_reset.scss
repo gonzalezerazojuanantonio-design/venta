@@ -1,0 +1,58 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+// 1. Box sizing universal
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// 2. Multimedia fluida
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto; // Asegura que no se deformen
+}
+
+// 3. Listas y Enlaces
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block; // Permite aplicar transforms y márgenes mejor
+}
+
+// 4. Body: Aquí es donde recuperamos el control visual
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    
+    // Aplicamos tus variables globales por defecto
+    background-color: clr("white");
+    color: clr("dark-navy");
+    font-family: $font-primary;
+    
+    // Evitamos el scroll horizontal accidental que suele romper el layout
+    overflow-x: hidden; 
+}
+
+// 5. Formularios
+input, button, textarea, select {
+    font: inherit;
+    border: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+}

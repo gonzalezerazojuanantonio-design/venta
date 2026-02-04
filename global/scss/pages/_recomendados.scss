@@ -1,0 +1,108 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   SECCIÓN RECOMENDADOS (Slider de Productos)
+   ========================================================================== */
+
+#recomendados {
+    position: relative; // Necesario para que las nubes (&::before) se posicionen respecto a esto
+    width: 100%;
+    overflow: hidden; // Corta las nubes que se salgan de la pantalla
+    background-color: clr("white");
+    
+    @include padding("xl", "none"); 
+
+    /* --- NUBES DECORATIVAS (Fondos) --- */
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        background: radial-gradient(circle, clr("pink-light") 20%, transparent 80%);
+        filter: blur(60px); // Crea el efecto difuminado
+        opacity: 0.8;
+        z-index: 0;
+    }
+    &::before { width: 450px; height: 450px; top: -100px; left: -150px; }
+    &::after { width: 350px; height: 350px; bottom: -50px; right: -100px; }
+
+    .container-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 space("md");
+        z-index: 1; // Por encima de las nubes
+
+        .section-title h2 {
+            text-align: center;
+            font-family: $font-accent;
+            color: clr("dark-navy");
+            margin-bottom: space("xl");
+            
+            @include responsive-font("h2"); // Usa el mixin de tipografía flexible
+        }
+
+        /* --- CONTENEDOR DEL SLIDER + BOTONES --- */
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            /* Botones de navegación (Flechas) */
+            .nav-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 45px;
+                height: 45px;
+                z-index: 10;
+                cursor: pointer;
+                color: clr("primary");
+                background-color: clr("white");
+                border: 2px solid clr("pink-light");
+                border-radius: 50%;
+                
+                // Propiedades antes que los mixins (Sass 2.0 compatible)
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+
+                @include flex-center; 
+
+                &:hover {
+                    background-color: clr("primary");
+                    color: clr("white");
+                    transform: translateY(-50%) scale(1.1);
+                }
+
+                // Posicionamiento de flechas
+                &.prev { left: -22px; }
+                &.next { right: -22px; }
+
+                @include respond-to("tablet") { display: none; }
+            }
+        }
+
+        /* --- TIRA DE TARJETAS (Cinta deslizable) --- */
+        .cards-slider {
+            display: flex; // Pone las tarjetas en fila
+            gap: space("lg");
+            overflow-x: auto; // Permite el scroll horizontal
+            padding: space("md") 0 space("xl");
+            scroll-snap-type: x mandatory; // Hace que las tarjetas se "peguen" al centro al deslizar
+            scroll-behavior: smooth;
+            scrollbar-width: none; // Oculta scrollbar en Firefox
+            
+            &::-webkit-scrollbar { display: none; } // Oculta scrollbar en Chrome/Safari
+
+            /* AQUÍ ESTÁ LA MAGIA: 
+               Sobrescribimos el ancho de la tarjeta SOLO dentro de este slider */
+            .product-card {
+                flex: 0 0 280px; // No se encoge ni crece, siempre mide 280px
+                scroll-snap-align: center;
+                
+                @include respond-to("movil") {
+                    flex: 0 0 240px; // Un poco más pequeña en celular
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,111 @@
+@use "sass:map"; 
+@use "variables" as *;
+
+/* ==========================================================================
+    MIXINS - Sary's Boutique (Versión Total y Definitiva)
+   ========================================================================== */
+
+/* 1. TIPOGRAFÍA RESPONSIVE */
+@mixin responsive-font($key) {
+    $size-map: font($key); 
+
+    @if $size-map {
+        & {
+            font-size: map.get($size-map, "pc"); 
+        }
+
+        @media (max-width: map.get($breakpoints, "laptop")) {
+            & { font-size: map.get($size-map, "tablet"); }
+        }
+
+        @media (max-width: map.get($breakpoints, "tablet")) {
+            & { font-size: map.get($size-map, "movil"); }
+        }
+    }
+}
+
+/* 2. PADDING Y MARGIN DINÁMICO (El que faltaba) */
+@mixin padding($top-bottom, $left-right: $top-bottom) {
+    & {
+        padding-top: space($top-bottom);
+        padding-bottom: space($top-bottom);
+        padding-left: space($left-right);
+        padding-right: space($left-right);
+    }
+}
+
+/* 3. CENTRADO CON FLEXBOX */
+@mixin flex-center($direction: row) {
+    & {
+        display: flex;
+        flex-direction: $direction;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* 4. MEDIA QUERIES */
+@mixin respond-to($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (max-width: map.get($breakpoints, $breakpoint)) {
+            & { @content; } 
+        }
+    } @else {
+        @warn "El valor '#{$breakpoint}' no existe en el mapa $breakpoints.";
+    }
+}
+
+/* 5. ESTILO DE BOTONES ELEVADOS */
+@mixin button-style($bg-color, $text-color) {
+    & {
+        display: inline-block;
+        background-color: $bg-color;
+        color: $text-color;
+        padding: space("sm") space("lg");
+        border: 2px solid $bg-color;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        background-color: clr("pink-bold");
+        color: clr("white"); 
+        border-color: clr("pink-bold");
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* 6. HOVER DE ICONOS */
+@mixin icon-hover($color-principal, $es-circular: false) {
+    & {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-principal;
+        text-decoration: none;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    @if $es-circular {
+        & {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+        }
+    }
+
+    &:hover {
+        & {
+            color: clr("pink-light"); 
+            transform: translateY(-3px) scale(1.1);
+        }
+    }
+}

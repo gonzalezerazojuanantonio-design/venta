@@ -1,0 +1,66 @@
+@use "sass:map"; // Obligatorio para usar map.get
+
+/* --- TIPOGRAFÍA --- */
+$font-sizes: (
+    "h1": ("pc": 3.5rem, "tablet": 2.5rem, "movil": clamp(1rem, 6.5vw, 2rem)),
+    "h2": ("pc": 2.5rem, "tablet": 2rem, "movil": 1.5rem),
+    "p":  ("pc": 1.1rem, "tablet": 1rem, "movil": 0.95rem),
+    "price": ("pc": 1.5rem, "tablet": 1.3rem, "movil": 1.2rem),
+    "icons": ("pc": 1.2rem, "tablet": 1.1rem, "movil": 1.5rem)
+);
+
+/* --- ESPACIADO --- */
+$spacings: (
+    "none": 0,
+    "xs": 4px,
+    "sm": 8px,
+    "md": 16px,
+    "lg": 32px,
+    "xl": 64px,
+    "xxl": 100px
+);
+
+/* --- PUNTOS DE QUIEBRE (Responsive) --- */
+$breakpoints: (
+    "movil": 576px,
+    "tablet": 768px,
+    "laptop": 1024px,
+    "pc": 1200px
+);
+
+/* --- COLORES --- */
+$colors: (
+    "bg-soft":     #FFE6EE,
+    "bg-logo":     #FFE7F7,
+    "pink-light":  #FFD1DC,
+    "pink-mid":    #FFB6C1,
+    "pink-bold":   #FF85A1,
+    "primary":     #FF6F89,
+    "dark-navy":   #040833,
+    "white":       #FFFFFF,
+    "bg-main-top": #F9F1E7,
+    "bg-main-bottom": #FFFFFF
+);
+
+// Nombres de fuentes
+$font-primary: 'SaryBoutique', monospace; 
+$font-accent: 'Playfair Display', serif;
+
+/* ==========================================================================
+    FUNCIONES DE ACCESO (Sass 3.0 Ready)
+   ========================================================================== */
+
+// Acceso a colores: clr("primary")
+@function clr($name) {
+    @return map.get($colors, $name);
+}
+
+// Acceso a espacios: space("md")
+@function space($name) {
+    @return map.get($spacings, $name);
+}
+
+// Acceso a tamaños de fuente: font("h2")
+@function font($name) {
+    @return map.get($font-sizes, $name);
+}

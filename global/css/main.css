@@ -1,0 +1,809 @@
+@charset "UTF-8";
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* --- TIPOGRAFÍA --- */
+/* --- ESPACIADO --- */
+/* --- PUNTOS DE QUIEBRE (Responsive) --- */
+/* --- COLORES --- */
+/* ==========================================================================
+    FUNCIONES DE ACCESO (Sass 3.0 Ready)
+   ========================================================================== */
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+    MIXINS - Sary's Boutique (Versión Total y Definitiva)
+   ========================================================================== */
+/* 1. TIPOGRAFÍA RESPONSIVE */
+/* 2. PADDING Y MARGIN DINÁMICO (El que faltaba) */
+/* 3. CENTRADO CON FLEXBOX */
+/* 4. MEDIA QUERIES */
+/* 5. ESTILO DE BOTONES ELEVADOS */
+/* 6. HOVER DE ICONOS */
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: #FFFFFF;
+  color: #040833;
+  font-family: "SaryBoutique", monospace;
+  overflow-x: hidden;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+}
+
+@font-face {
+  font-family: "SaryBoutique";
+  src: url("/assets/fonts/plex-mono/IBMPlexMono-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/zealand/PlaywriteNZBasic-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* Buttons-globales */
+.btn-primary {
+  font-family: "SaryBoutique", monospace;
+  padding: 8px 32px;
+  border-radius: 50px;
+}
+.btn-primary {
+  display: inline-block;
+  background-color: #FF6F89;
+  color: #FFFFFF;
+  padding: 8px 32px;
+  border: 2px solid #FF6F89;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #FF85A1;
+  color: #FFFFFF;
+  border-color: #FF85A1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.btn-primary {
+  font-size: 1.1rem;
+}
+@media (max-width: 1024px) {
+  .btn-primary {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .btn-primary {
+    font-size: 0.95rem;
+  }
+}
+
+.btn-dark {
+  border-radius: 50px;
+}
+.btn-dark {
+  display: inline-block;
+  background-color: #040833;
+  color: #FFFFFF;
+  padding: 8px 32px;
+  border: 2px solid #040833;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-dark:hover {
+  background-color: #FF85A1;
+  color: #FFFFFF;
+  border-color: #FF85A1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pink-light {
+  border-radius: 50px;
+}
+.btn-pink-light {
+  display: inline-block;
+  background-color: #FFD1DC;
+  color: #040833;
+  padding: 8px 32px;
+  border: 2px solid #FFD1DC;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-pink-light:hover {
+  background-color: #FF85A1;
+  color: #FFFFFF;
+  border-color: #FF85A1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   PRODUCT CARDS
+   ========================================================================== */
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+}
+.product-card .card-image img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+.product-card .card-info {
+  padding: 16px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.product-card .card-info h4 {
+  font-family: "SaryBoutique", monospace;
+  color: #040833;
+  margin-bottom: 4px;
+}
+.product-card .card-info .price {
+  display: block;
+  color: #FF6F89;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.product-card .card-info .btn-details {
+  margin-top: auto;
+  font-size: 0.8rem;
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.product-card .card-info .btn-details {
+  display: inline-block;
+  background-color: #FF6F89;
+  color: #FFFFFF;
+  padding: 8px 32px;
+  border: 2px solid #FF6F89;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.product-card .card-info .btn-details:hover {
+  background-color: #FF85A1;
+  color: #FFFFFF;
+  border-color: #FF85A1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   PRODUCT SECTION GRID
+   ========================================================================== */
+.section-products {
+  background-color: #F9F1E7;
+}
+.section-products {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.section-products .grid-container {
+  display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px;
+}
+@media (max-width: 768px) {
+  .section-products .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+@media (max-width: 576px) {
+  .section-products .grid-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   HEADER STYLES
+   ========================================================================== */
+.header-icons-container {
+  width: 100%;
+  background-color: #FF6F89;
+  padding: 4px 64px;
+  display: flex;
+  justify-content: flex-end;
+}
+.header-icons-container .icons a {
+  color: #FFFFFF;
+}
+.header-icons-container .icons a {
+  font-size: 1.2rem;
+}
+@media (max-width: 1024px) {
+  .header-icons-container .icons a {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 768px) {
+  .header-icons-container .icons a {
+    font-size: 1.5rem;
+  }
+}
+.header-icons-container .icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.header-icons-container .icons a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+.header-icons-container .icons a:hover {
+  color: #FFD1DC;
+  transform: translateY(-3px) scale(1.1);
+}
+.header-icons-container .icons a span {
+  display: inline-block;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #FFE6EE;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 209, 220, 0.3);
+}
+
+.header-main {
+  width: 100%;
+}
+.header-main .nav-container-stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.header-main .nav-container-stacked .menu-check, .header-main .nav-container-stacked .menu-toggle {
+  display: none;
+}
+.header-main .nav-container-stacked .brand-logo {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+.header-main .nav-container-stacked .brand-logo img {
+  width: clamp(120px, 15vw + 50px, 220px);
+  height: auto;
+}
+.header-main .nav-container-stacked .navbar-primary {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #FF85A1;
+}
+.header-main .nav-container-stacked .navbar-primary ul {
+  display: flex;
+  list-style: none;
+  gap: clamp(64px, 3vw, 64px);
+  padding: 8px 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.header-main .nav-container-stacked .navbar-primary ul li a {
+  position: relative;
+  display: inline-block;
+  color: #FFFFFF;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: "SaryBoutique", monospace;
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 2.125rem);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.header-main .nav-container-stacked .navbar-primary ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #FFFFFF;
+  transition: width 0.3s ease;
+}
+.header-main .nav-container-stacked .navbar-primary ul li a:hover {
+  transform: translateY(-3px);
+}
+.header-main .nav-container-stacked .navbar-primary ul li a:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS PARA CATÁLOGO (Solo Calzado y Prendas)
+   ========================================================================== */
+@media (max-width: 576px) {
+  .header-catalog .nav-container-stacked {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+  .header-catalog .nav-container-stacked .brand-logo {
+    padding: 4px 0;
+  }
+  .header-catalog .nav-container-stacked .brand-logo img {
+    width: 80px;
+  }
+  .header-catalog .nav-container-stacked .menu-toggle {
+    display: block;
+    font-size: 1.5rem;
+    color: #040833;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  .header-catalog .nav-container-stacked .navbar-primary {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  .header-catalog .nav-container-stacked .navbar-primary ul {
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 0;
+  }
+  .header-catalog .nav-container-stacked .menu-check:checked ~ .navbar-primary {
+    display: flex;
+  }
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   FOOTER STYLES
+   ========================================================================== */
+.footer-main {
+  background-color: #FF6F89;
+  color: #FFFFFF;
+  padding: 32px 0 8px;
+  margin-top: 64px;
+}
+.footer-main .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footer-main .footer-brand .footer-brand-name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.footer-main .footer-brand p {
+  font-size: 0.8rem;
+  font-style: italic;
+  opacity: 0.7;
+  max-width: 250px;
+  margin: 0 auto;
+}
+.footer-main .footer-contact h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #FFD1DC;
+}
+.footer-main .footer-contact p {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.footer-main .social-links {
+  display: flex;
+  gap: 32px;
+}
+.footer-main .social-links a {
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+.footer-main .social-links a:hover {
+  color: #FFD1DC;
+  transform: translateY(-3px);
+}
+.footer-main .footer-bottom {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+}
+.footer-main .footer-bottom p {
+  font-size: 0.7rem;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   SECCIONES Y GRIDS (Catálogo Reutilizable con Slider Móvil)
+   ========================================================================== */
+/* 1. DIVISOR DE CATEGORÍA GLOBAL */
+.catalog-category {
+  width: 100%;
+  margin: 64px 0 16px 0;
+  padding-left: 16px;
+  border-left: 4px solid #FF6F89;
+  text-align: left;
+}
+.catalog-category__title {
+  display: block;
+  color: #040833;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.catalog-category__description {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+}
+
+/* 2. CONTENEDOR PRINCIPAL DE PRODUCTOS */
+.section-products {
+  background-color: #FFFFFF;
+}
+.section-products {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.section-products .section-title {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-products .section-title h2 {
+  color: #040833;
+}
+.section-products .section-title h2 {
+  font-size: 2.5rem;
+}
+@media (max-width: 1024px) {
+  .section-products .section-title h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .section-products .section-title h2 {
+    font-size: 1.5rem;
+  }
+}
+.section-products .section-title span {
+  display: block;
+  color: #FF6F89;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section-products .grid-container {
+  display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px;
+}
+@media (max-width: 768px) {
+  .section-products .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+@media (max-width: 576px) {
+  .section-products .grid-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 0 16px 32px 16px;
+    scrollbar-width: none;
+  }
+  .section-products .grid-container::-webkit-scrollbar {
+    display: none;
+  }
+  .section-products .grid-container .product-card {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   HOME PAGE (Hero Section)
+   ========================================================================== */
+.page-home .main-index {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  min-height: 80vh;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/assets/img/fondo-index.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+@media (max-width: 768px) {
+  .page-home .main-index {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+}
+.page-home .main-index .hero-content {
+  grid-column: 2;
+}
+@media (max-width: 768px) {
+  .page-home .main-index .hero-content {
+    grid-column: 1;
+  }
+}
+.page-home .main-index .hero-content h1 {
+  text-align: center;
+  color: #F9F1E7;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  font-family: "SaryBoutique", monospace;
+}
+.page-home .main-index .hero-content h1 {
+  font-size: 3.5rem;
+}
+@media (max-width: 1024px) {
+  .page-home .main-index .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .page-home .main-index .hero-content h1 {
+    font-size: clamp(1rem, 6.5vw, 2rem);
+  }
+}
+.page-home .main-index .hero-content .main-index-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* ==========================================================================
+   MAIN STYLESHEET - Ubicado en global/scss/
+   ========================================================================== */
+/* ==========================================================================
+   SECCIÓN RECOMENDADOS (Slider de Productos)
+   ========================================================================== */
+#recomendados {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  /* --- NUBES DECORATIVAS (Fondos) --- */
+}
+#recomendados {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  padding-left: 0;
+  padding-right: 0;
+}
+#recomendados::before, #recomendados::after {
+  content: "";
+  position: absolute;
+  background: radial-gradient(circle, #FFD1DC 20%, transparent 80%);
+  filter: blur(60px);
+  opacity: 0.8;
+  z-index: 0;
+}
+#recomendados::before {
+  width: 450px;
+  height: 450px;
+  top: -100px;
+  left: -150px;
+}
+#recomendados::after {
+  width: 350px;
+  height: 350px;
+  bottom: -50px;
+  right: -100px;
+}
+#recomendados .container-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  z-index: 1;
+  /* --- CONTENEDOR DEL SLIDER + BOTONES --- */
+  /* --- TIRA DE TARJETAS (Cinta deslizable) --- */
+}
+#recomendados .container-inner .section-title h2 {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  color: #040833;
+  margin-bottom: 64px;
+}
+#recomendados .container-inner .section-title h2 {
+  font-size: 2.5rem;
+}
+@media (max-width: 1024px) {
+  #recomendados .container-inner .section-title h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  #recomendados .container-inner .section-title h2 {
+    font-size: 1.5rem;
+  }
+}
+#recomendados .container-inner .slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Botones de navegación (Flechas) */
+}
+#recomendados .container-inner .slider-wrapper .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  z-index: 10;
+  cursor: pointer;
+  color: #FF6F89;
+  background-color: #FFFFFF;
+  border: 2px solid #FFD1DC;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+#recomendados .container-inner .slider-wrapper .nav-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#recomendados .container-inner .slider-wrapper .nav-btn:hover {
+  background-color: #FF6F89;
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.1);
+}
+#recomendados .container-inner .slider-wrapper .nav-btn.prev {
+  left: -22px;
+}
+#recomendados .container-inner .slider-wrapper .nav-btn.next {
+  right: -22px;
+}
+@media (max-width: 768px) {
+  #recomendados .container-inner .slider-wrapper .nav-btn {
+    display: none;
+  }
+}
+#recomendados .container-inner .cards-slider {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding: 16px 0 64px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* AQUÍ ESTÁ LA MAGIA: 
+     Sobrescribimos el ancho de la tarjeta SOLO dentro de este slider */
+}
+#recomendados .container-inner .cards-slider::-webkit-scrollbar {
+  display: none;
+}
+#recomendados .container-inner .cards-slider .product-card {
+  flex: 0 0 280px;
+  scroll-snap-align: center;
+}
+@media (max-width: 576px) {
+  #recomendados .container-inner .cards-slider .product-card {
+    flex: 0 0 240px;
+  }
+}/*# sourceMappingURL=main.css.map */
